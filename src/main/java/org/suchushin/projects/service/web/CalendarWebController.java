@@ -20,12 +20,13 @@ import java.util.List;
 
 
 @RestController
-public class CalendarController {
+public class CalendarWebController {
 
     private static String HELLO_TEXT = "<p>Hello! You visit Online Calendar Web-Service Hello-Page. <br />" +
             "You will find information for further service using there.<br />" +
             "All of urls and their descriptions are listed below:<br />" +
             "/registration - registration of new user, your request type must be POST type and body must contain json object with 'login' and 'password' properties;<br />" +
+            "/login - login user; <br />" +
             "/user/events - get user events, your request type must be GET type;<br />" +
             "/user/events-by-name - getting user events by name of event where 'name' must be request parameter, your request type must be GET type;<br />" +
             "/user/events-by-date - getting user events by date of event where 'date' must be request parameter(date format: 'yyyy-mm-dd'), your request type must be GET type;<br />" +
@@ -117,6 +118,11 @@ public class CalendarController {
         }
 
         return new ResponseEntity<>("Deletion successful", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ResponseEntity<String> loginUser(){
+        return new ResponseEntity<>("Success login", HttpStatus.OK);
     }
 
 }
